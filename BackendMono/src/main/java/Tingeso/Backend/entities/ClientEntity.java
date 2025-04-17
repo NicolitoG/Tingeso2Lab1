@@ -2,6 +2,7 @@ package Tingeso.Backend.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import jakarta.persistence.*;
@@ -21,4 +22,9 @@ public class ClientEntity {
     private String name;
     private String email;
     private int monthlyVisits;
+
+    public int getMonthlyVisits() {
+        return monthlyVisits;
+    }
+
 }

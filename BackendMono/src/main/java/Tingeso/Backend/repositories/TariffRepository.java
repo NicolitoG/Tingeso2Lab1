@@ -10,4 +10,5 @@ import java.util.List;
 
 @Repository
 public interface TariffRepository extends JpaRepository<TariffEntity, Long> {
+    TariffEntity findByBookingType(int bookingType);
 }

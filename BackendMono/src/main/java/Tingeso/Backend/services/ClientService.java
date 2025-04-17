@@ -31,4 +31,10 @@ public class ClientService {
 
         return "nonValid"; // for cases where visits are negative
     }
+
+    public void IncrementVisits(ClientEntity client) {
+        int visits = client.getMonthlyVisits();
+        client.setMonthlyVisits(visits + 1);
+        clientRepository.save(client);
+    }
 }

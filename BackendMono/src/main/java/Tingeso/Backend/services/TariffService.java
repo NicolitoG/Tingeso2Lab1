@@ -13,4 +13,13 @@ import java.util.ArrayList;
 public class TariffService {
     @Autowired
     TariffRepository tariffRepository;
+
+    public double getBasePrice(int bookingType) {
+        TariffEntity tariff = tariffRepository.findByBookingType(bookingType);
+        if (tariff != null) {
+            return tariff.getBasePrice();
+        } else {
+            throw new IllegalArgumentException("Tariff not found for booking type: " + bookingType);
+        }
+    }
 }

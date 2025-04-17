@@ -13,4 +13,12 @@ import java.util.ArrayList;
 public class KartService {
     @Autowired
     KartRepository kartRepository;
+
+    public void changeKartStatus(KartEntity kart, int newState) {
+        if (newState < 0 || newState > 2) {
+            throw new IllegalArgumentException("Invalid state: " + newState);
+        }
+        kart.setState(newState);
+        kartRepository.save(kart);
+    }
 }
