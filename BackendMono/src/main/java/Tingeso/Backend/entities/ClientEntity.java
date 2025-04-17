@@ -16,9 +16,9 @@ public class ClientEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
-    private Long id;
+    private Long clientId;
 
     private String name;
     private String email;
-    private String monthlyVisits;
+    private int monthlyVisits;
 }

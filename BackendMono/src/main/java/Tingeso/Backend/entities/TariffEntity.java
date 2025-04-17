@@ -16,7 +16,7 @@ public class TariffEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
-    private Long id;
+    private Long tariffId;
 
     // 0 = "10 leaps/10 min", 1 = "15 vueltas/15 min", 2 = "20 vueltas/20 min"
     private int bookingType;

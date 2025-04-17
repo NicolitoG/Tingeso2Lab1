@@ -15,7 +15,7 @@ public class ReservationDetailEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
-    private Long id;
+    private Long reservationDetailId;
 
     @ManyToOne
     @JoinColumn(name = "reservation_id", nullable = false)

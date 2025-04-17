@@ -16,7 +16,7 @@ public class KartEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
-    private Long id;
+    private Long kartId;
 
     private String code;
     private int state; //0 = available, 1 = in use, 2 = maintenance
