@@ -33,8 +33,95 @@ public class ReservationEntity {
 
     private int numberOfPeople; // Total number of people in the reservation
 
-    private String contactClient; // Contact name or reference of the client
+    @ManyToOne
+    @JoinColumn(name = "clientId", nullable = false)
+    private ClientEntity contactClient; // Relación con la entidad cliente
 
     @OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ReservationDetailEntity> listOfReservationDetails; // List of reservation details (each participant and their assignment)
+
+    private int status; // Status of the reservation (0 = PENDIENTE, 1 = APROBADA, 2 = RECHAZADA, 3 = CANCELADA)
+
+
+
+    public Long getReservationId() {
+        return reservationId;
+    }
+
+    public void setReservationId(Long reservationId) {
+        this.reservationId = reservationId;
+    }
+
+    public String getReservationCode() {
+        return reservationCode;
+    }
+
+    public void setReservationCode(String reservationCode) {
+        this.reservationCode = reservationCode;
+    }
+
+    public LocalDate getReservationDate() {
+        return reservationDate;
+    }
+
+    public void setReservationDate(LocalDate reservationDate) {
+        this.reservationDate = reservationDate;
+    }
+
+    public LocalTime getReservationStartTime() {
+        return reservationStartTime;
+    }
+
+    public void setReservationStartTime(LocalTime reservationStartTime) {
+        this.reservationStartTime = reservationStartTime;
+    }
+
+    public LocalTime getReservationEndTime() {
+        return reservationEndTime;
+    }
+
+    public void setReservationEndTime(LocalTime reservationEndTime) {
+        this.reservationEndTime = reservationEndTime;
+    }
+
+    public TariffEntity getReservationTariff() {
+        return ReservationTariff;
+    }
+
+    public void setReservationTariff(TariffEntity reservationTariff) {
+        ReservationTariff = reservationTariff;
+    }
+
+    public int getNumberOfPeople() {
+        return numberOfPeople;
+    }
+
+    public void setNumberOfPeople(int numberOfPeople) {
+        this.numberOfPeople = numberOfPeople;
+    }
+
+    public List<ReservationDetailEntity> getListOfReservationDetails() {
+        return listOfReservationDetails;
+    }
+
+    public void setListOfReservationDetails(List<ReservationDetailEntity> listOfReservationDetails) {
+        this.listOfReservationDetails = listOfReservationDetails;
+    }
+
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public ClientEntity getContactClient() {
+        return contactClient;
+    }
+
+    public void setContactClient(ClientEntity contactClient) {
+        this.contactClient = contactClient;
+    }
 }

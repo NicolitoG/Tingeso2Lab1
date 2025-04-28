@@ -3,6 +3,7 @@ package Tingeso.Backend.services;
 import Tingeso.Backend.entities.ClientEntity;
 import Tingeso.Backend.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,6 +15,19 @@ public class ClientService {
 
     public ArrayList<ClientEntity> getClients(){
         return (ArrayList<ClientEntity>) clientRepository.findAll();
+    }
+
+    public ClientEntity saveClient(ClientEntity client) {
+        if (clientRepository.findByName(client.getName()) != null) {
+            throw new RuntimeException("There is already an user with that name");
+        }
+        return clientRepository.save(client);
+    }
+
+    public ResponseEntity<String> login (String name, String email) {
+        return clientRepository.findByNameAndEmail(name, email) != null
+                ? ResponseEntity.ok("Login successful")
+                : ResponseEntity.badRequest().body("Invalid credentials");
     }
 
     public String calculateCategory(ClientEntity client) {

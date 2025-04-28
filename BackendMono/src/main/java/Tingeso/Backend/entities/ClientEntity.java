@@ -1,17 +1,19 @@
 package Tingeso.Backend.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "client")
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 
 public class ClientEntity {
     @Id
@@ -23,8 +25,46 @@ public class ClientEntity {
     private String email;
     private int monthlyVisits;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    private Date BirthDate;
+
     public int getMonthlyVisits() {
         return monthlyVisits;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Long getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setMonthlyVisits(int monthlyVisits) {
+        this.monthlyVisits = monthlyVisits;
+    }
+
+    public Date getBirthDate() {
+        return BirthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        BirthDate = birthDate;
+    }
 }

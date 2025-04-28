@@ -14,4 +14,31 @@ import java.util.List;
 public class ClientController {
     @Autowired
     ClientService clientService;
+
+    @GetMapping("/list")
+    public ResponseEntity<List<ClientEntity>> listClients() {
+        List<ClientEntity> clients = clientService.getClients();
+        return ResponseEntity.ok(clients);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<ClientEntity> registerClient(@RequestBody ClientEntity client) {
+        try {
+            ClientEntity savedClient = clientService.saveClient(client);
+            return ResponseEntity.ok(savedClient);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(null);
+        }
+    }
+    @PostMapping("/login")
+    public ResponseEntity<String> loginClient(@RequestBody ClientEntity client) {
+        String name = client.getName();
+        String email = client.getEmail();
+        return clientService.login(name, email);
+    }
+
+
+
+
+
 }
