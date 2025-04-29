@@ -24,12 +24,10 @@ pipeline{
             steps{
                 dir ("BackendMono"){
                     script{
-                        bat 'echo *** AGENT INFO ***'
-                        bat 'ver'
-                        withDockerRegistry(credentialsId: 'docker-credentials'){
+                        //withDockerRegistry(credentialsId: 'docker-credentials'){
                             bat "docker build -t nicolitog/back-image:latest ."
                             bat "docker push nicolitog/back-image:latest"
-                        }
+                        //}
                     }
                 }
             }
