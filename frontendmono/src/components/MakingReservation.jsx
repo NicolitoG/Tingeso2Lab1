@@ -94,7 +94,7 @@ const MakingReservation = () => {
                     </select>
                 </div>
                 <div>
-                    <label htmlFor="peopleCount">Cantidad de Personas:</label>
+                    <label htmlFor="peopleCount">Nro Personas:</label>
                     <input
                         type="number"
                         id="peopleCount"
