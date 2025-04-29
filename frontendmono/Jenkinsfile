@@ -14,10 +14,10 @@ pipeline{
             steps{
                 dir("frontendmono"){
                     script{
-                        withDockerRegistry(credentialsId: 'docker-credentials'){
+                        //withDockerRegistry(credentialsId: "docker-credentials"){
                             bat "docker build --no-cache -t nicolitog/front-image:latest ."
                             bat "docker push nicolitog/front-image:latest"
-                        }
+                        //}
                     }
                 }
             }
