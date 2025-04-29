@@ -2,6 +2,7 @@ package Tingeso.Backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+//@SpringBootTest(classes = Backend1Application.class)
 
 @SpringBootApplication
 public class Backend1Application {

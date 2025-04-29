@@ -2,12 +2,19 @@ package Tingeso.Backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 
 @SpringBootTest
-class Backend1ApplicationTests {
-
+@TestPropertySource(properties = {
+		"spring.datasource.url=jdbc:h2:mem:testdb",
+		"spring.datasource.driverClassName=org.h2.Driver",
+		"spring.datasource.username=sa",
+		"spring.datasource.password=",
+		"spring.jpa.hibernate.ddl-auto=none"
+})
+public class Backend1ApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }
+
