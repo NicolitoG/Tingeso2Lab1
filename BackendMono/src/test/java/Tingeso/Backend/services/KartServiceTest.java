@@ -54,4 +54,14 @@ class KartServiceTest {
         assertEquals(2, kart.getState());
         verify(kartRepository, times(1)).save(kart);
     }
+
+    @Test
+    void testChangeKartStatus_AnotherInvalidState() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            kartService.changeKartStatus(kart, 3);
+        });
+
+        assertEquals("Invalid state: 3", exception.getMessage());
+        verify(kartRepository, never()).save(kart);
+    }
 }

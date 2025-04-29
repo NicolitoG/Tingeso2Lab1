@@ -8,8 +8,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -36,24 +34,40 @@ class ReservationDetailServiceTest {
     }
 
     @Test
-    void testFindReservationDetailById() {
-        when(reservationDetailRepository.findById(1L)).thenReturn(Optional.of(reservationDetail));
+    void testChangeAppliedDiscount_ValidDiscount() {
+        // Configurar un descuento válido
+        double newDiscount = 20.0;
 
-        Optional<ReservationDetailEntity> result = reservationDetailService.reservationDetailRepository.findById(1L);
+        reservationDetailService.changeAppliedDiscount(reservationDetail, newDiscount);
 
-        assertTrue(result.isPresent());
-        assertEquals("Juan Perez", result.get().getClientName());
-        verify(reservationDetailRepository, times(1)).findById(1L);
+        assertEquals(newDiscount, reservationDetail.getAppliedDiscount());
+        verify(reservationDetailRepository, times(1)).save(reservationDetail);
     }
 
     @Test
-    void testSaveReservationDetail() {
-        when(reservationDetailRepository.save(reservationDetail)).thenReturn(reservationDetail);
+    void testChangeAppliedDiscount_InvalidDiscountNegative() {
+        // Configurar un descuento inválido (negativo)
+        double newDiscount = -5.0;
 
-        ReservationDetailEntity result = reservationDetailService.reservationDetailRepository.save(reservationDetail);
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            reservationDetailService.changeAppliedDiscount(reservationDetail, newDiscount);
+        });
 
-        assertNotNull(result);
-        assertEquals(90.0, result.getFinalAmount());
-        verify(reservationDetailRepository, times(1)).save(reservationDetail);
+        assertEquals("Invalid discount: -5.0", exception.getMessage());
+        verify(reservationDetailRepository, never()).save(reservationDetail);
+    }
+
+    @Test
+    void testChangeAppliedDiscount_InvalidDiscountExceeds100() {
+        // Configurar un descuento inválido (mayor a 100)
+        double newDiscount = 150.0;
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            reservationDetailService.changeAppliedDiscount(reservationDetail, newDiscount);
+        });
+
+        assertEquals("Invalid discount: 150.0", exception.getMessage());
+        verify(reservationDetailRepository, never()).save(reservationDetail);
     }
 }
+

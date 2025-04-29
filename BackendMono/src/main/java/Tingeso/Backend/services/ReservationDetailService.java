@@ -13,4 +13,13 @@ import java.util.ArrayList;
 public class ReservationDetailService {
     @Autowired
     ReservationDetailRepository reservationDetailRepository;
+
+    public void changeAppliedDiscount(ReservationDetailEntity reservationDetail, double newAppliedDiscount) {
+        if (newAppliedDiscount < 0 || newAppliedDiscount > 100) {
+            throw new IllegalArgumentException("Invalid discount: " + newAppliedDiscount);
+        }
+        reservationDetail.setAppliedDiscount(newAppliedDiscount);
+        reservationDetailRepository.save(reservationDetail);
+    }
+
 }
