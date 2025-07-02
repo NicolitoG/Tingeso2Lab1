@@ -1,8 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import ClientService from "../services/ClientService.js";
 import { Table, TableHead, TableBody, TableCell, TableRow, TableContainer, Paper, Pagination, Button, Menu, MenuItem } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+
+
+
 
 const AdminSection = () => {
+
+    const navigate = useNavigate();
+
+    const goToRack = () => {
+        navigate('/Admin/Rack');
+    };
+
+    const goToRevenueReport = () => {
+        navigate('/Admin/RevenueReport');
+    };
+
+    const goToHome = () => {
+        navigate('/');
+    }
+
     const [reservas, setReservas] = useState([]); // Estado para las reservas
     const [errorMessage, setErrorMessage] = useState(""); // Estado para manejar errores
     const [isLoading, setIsLoading] = useState(false); // Estado para manejar el estado de carga
@@ -107,7 +126,24 @@ const AdminSection = () => {
     };
 
     return (
-        <div>
+        <div style={{ padding: 20 }}>
+            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                <button variant="contained" onClick={goToHome} style={{ marginBottom: 20, marginLeft: 10 }}>
+                    Volver a la página principal
+                </button>
+                <button variant="contained" onClick={goToRack} style={{ marginBottom: 20 }}>
+                    Vista rack semanal
+                </button>
+                <button variant="contained" onClick={goToRevenueReport} style={{ marginBottom: 20, marginLeft: 10 }}>
+                    Reporte de ingresos
+                </button>
+
+            </div>
+
+
+
+
+        
             <h1>Sección de Admin</h1>
             <p>Aquí puedes aprobar o rechazar reservas pendientes</p>
 

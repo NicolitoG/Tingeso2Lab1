@@ -9,14 +9,16 @@ const ClientLogged = () => {
 
   const goToReservarHora = () => {
     navigate('/ClientLogged/MakingReservations' , { state: { name } });
+    console.log("Nombre recibido en ClientLogged:", name);
   };
 
   const goToReservations = () => {
     navigate('/ClientLogged/Reservations', { state: { name } });
+    console.log("Nombre recibido en ClientLogged:", name);
   }
 
-  const goToBoleta = () => {
-    navigate('/ClientLogged/Boleta', { state: { name } });
+  const goToInicioSesion = () => {
+    navigate('/ClientLogin');
   };
 
   console.log("Nombre enviado a ReservarHora:", { state: { name } });
@@ -24,11 +26,14 @@ const ClientLogged = () => {
 
   return (
     <div>
+      <p style={{ textAlign: 'left' }}>
+        <button onClick={goToInicioSesion}>Cerrar sesión</button>
+      </p>
       <h1>Cliente {name}, logueado correctamente</h1>
+
       <p>
-        <button onClick={goToReservations}>Ver Reservas</button>
-        <button onClick={goToReservarHora}>Reservar Hora</button>
-        <button onClick={goToBoleta}>Ver boleta</button>
+        <button onClick={goToReservations}>Ver mis reservas</button>
+        <button onClick={goToReservarHora}>Reservar rora</button>
       </p>
     </div>
   );

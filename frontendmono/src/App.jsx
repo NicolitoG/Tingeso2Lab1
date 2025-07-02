@@ -1,6 +1,3 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Button from './components/Button.jsx'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
@@ -12,6 +9,8 @@ import ClientLogged from './components/ClientLogged.jsx'
 import MakingReservation from './components/MakingReservation.jsx'
 import ClientReservations from './components/ClientReservations.jsx'
 import AdminSection from './components/AdminSection.jsx'
+import AdminRack from './components/AdminRack.jsx'
+import RevenueReport from './components/RevenueReport.jsx'
 
 
 function App() {
@@ -26,8 +25,10 @@ function App() {
           <Route path="/ClientLogged" element={<ClientLogged/>} />
           <Route path="/ClientLogged/MakingReservations" element={<MakingReservation/>} />
           <Route path="/ClientLogged/Reservations" element={<ClientReservations/>} />
-
+          
           <Route path="/Admin" element={<AdminSection/>} />
+          <Route path = "/Admin/Rack" element = {<AdminRack/>}/>
+          <Route path="/Admin/RevenueReport" element={<RevenueReport/>} />
 
         </Routes>
       </div>

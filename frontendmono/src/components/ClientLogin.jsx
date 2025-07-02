@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import userService from "../services/ClientService";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import FormControl from "@mui/material/FormControl";
-import Typography from "@mui/material/Typography";
 
 const ClientLogin = () => {
     const [name, setName] = useState("");
@@ -15,6 +10,10 @@ const ClientLogin = () => {
     const [emailError, setEmailError] = useState("");
 
     const navigate = useNavigate();
+
+    const goToClientSection = () => {
+        navigate('/ClientHome');
+    };
 
     const handleNameChange = (e) => {
         const value = e.target.value;
@@ -41,7 +40,6 @@ const ClientLogin = () => {
     const loginUser = (e) => {
         e.preventDefault();
 
-        // Verifica si hay errores en los campos
         if (!name || nameError || !email || emailError) {
             setFeedbackMessage("Error: Por favor ingrese un nombre y email válidos.");
             return;
@@ -51,15 +49,11 @@ const ClientLogin = () => {
 
         userService.login(userCredentials)
             .then((response) => {
-                console.log("Response del servidor:", response);
-
                 if (response.status === 200 && response.data) {
                     setFeedbackMessage("Login exitoso, redirigiendo...");
-                    console.log("Nombre enviado al componente ClientLogged:", name);
                     setTimeout(() => {
                         navigate('/ClientLogged', { state: { name } });
                     }, 2000);
-                    
                 } else {
                     setFeedbackMessage("Error: Nombre o email incorrecto");
                 }
@@ -71,51 +65,48 @@ const ClientLogin = () => {
     };
 
     return (
-        <Box>
+        <div>
+            <button onClick={goToClientSection} style={{ marginBottom: 20 }}>
+                Volver
+            </button>
             <h1>Iniciar Sesión</h1>
 
             {feedbackMessage && (
-                <Typography color={feedbackMessage.startsWith("Error") ? "error" : "primary"}>
+                <p style={{ color: feedbackMessage.startsWith("Error") ? "red" : "green" }}>
                     {feedbackMessage}
-                </Typography>
+                </p>
             )}
 
-            <FormControl fullWidth sx={{ mb: 2 }}>
-                <TextField
-                    id="name"
-                    label="Nombre"
-                    type="text"
-                    value={name}
-                    variant="outlined"
-                    onChange={handleNameChange}
-                    helperText={nameError || "Ej. Juan Perez"}
-                    error={!!nameError}
-                    required
-                />
-            </FormControl>
-
-            <FormControl fullWidth sx={{ mb: 2 }}>
-                <TextField
-                    id="email"
-                    label="Email"
-                    type="email"
-                    value={email}
-                    variant="outlined"
-                    onChange={handleEmailChange}
-                    helperText={emailError || "Ej. usuario@correo.com"}
-                    error={!!emailError}
-                    required
-                />
-            </FormControl>
-
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={loginUser}
-            >
-                Iniciar Sesión
-            </Button>
-        </Box>
+            <form onSubmit={loginUser} style={{ maxWidth: 400, margin: "0 auto" }}>
+                <div className="formGroup" style={{ marginBottom: 15 }}>
+                    <label htmlFor="name">Nombre</label>
+                    <input
+                        id="name"
+                        type="text"
+                        value={name}
+                        onChange={handleNameChange}
+                        required
+                        style={{ width: "100%" }}
+                        placeholder="Ej. Juan Perez"
+                    />
+                    {nameError && <span style={{ color: "red", fontSize: "0.9em" }}>{nameError}</span>}
+                </div>
+                <div className="formGroup" style={{ marginBottom: 15 }}>
+                    <label htmlFor="email">Email</label>
+                    <input
+                        id="email"
+                        type="email"
+                        value={email}
+                        onChange={handleEmailChange}
+                        required
+                        style={{ width: "100%" }}
+                        placeholder="Ej. usuario@correo.com"
+                    />
+                    {emailError && <span style={{ color: "red", fontSize: "0.9em" }}>{emailError}</span>}
+                </div>
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+        </div>
     );
 };
 

@@ -16,8 +16,16 @@ const getReservations = (name) => {
     return httpClient.get(`/api/v1/reservations/client/name/${name}`);
 }
 
+const getAllReservations = () => {
+    return httpClient.get("/api/v1/reservations/allReservations");
+}
+
 const getAllPendingReservations = () => {
     return httpClient.get("/api/v1/reservations/allPendingReservations");
+}
+
+const getAllApprovedReservations = () => {
+    return httpClient.get("/api/v1/reservations/allApprovedReservations");
 }
 
 const approveReservation = (reservationCode) => {
@@ -30,5 +38,13 @@ const rejectReservation = (reservationCode) => {
 
 
 export default {
-    register, login, createReservation, getReservations, getAllPendingReservations, approveReservation, rejectReservation
+    register,
+    login,
+    createReservation,
+    getReservations,
+    getAllReservations,
+    getAllPendingReservations,
+    approveReservation,
+    rejectReservation,
+    getAllApprovedReservations
 }

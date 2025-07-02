@@ -50,6 +50,12 @@ public class ReservationController {
         return ResponseEntity.ok(reservations);
     }
 
+    @GetMapping ("/allReservations")
+    public ResponseEntity<List<ReservationEntity>> getAllReservations() {
+        List<ReservationEntity> reservations = reservationService.getAllReservations();
+        return ResponseEntity.ok(reservations);
+    }
+
     @GetMapping ("/allPendingReservations")
     public ResponseEntity<List<ReservationEntity>> getAllPendingReservations() {
         List<ReservationEntity> reservations = reservationService.getAllPendingReservations();
@@ -78,6 +84,12 @@ public class ReservationController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(null);
         }
+    }
+
+    @GetMapping ("/allApprovedReservations")
+    public ResponseEntity<List<ReservationEntity>> getAllApprovedReservations() {
+        List<ReservationEntity> reservations = reservationService.getAllApprovedReservations();
+        return ResponseEntity.ok(reservations);
     }
 }
 

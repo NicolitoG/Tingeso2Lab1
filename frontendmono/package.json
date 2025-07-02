@@ -16,9 +16,12 @@
     "@mui/material": "^7.0.2",
     "axios": "^1.9.0",
     "bootstrap": "^5.3.5",
-    "docker": "^1.0.0",
+    "date-fns": "^4.1.0",
+    "dayjs": "^1.11.13",
+    "docker": "^0.2.14",
     "nginx": "^1.1.0",
     "react": "^19.0.0",
+    "react-big-calendar": "^1.19.4",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.5.2"

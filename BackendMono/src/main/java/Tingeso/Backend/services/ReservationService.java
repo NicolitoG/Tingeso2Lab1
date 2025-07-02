@@ -8,8 +8,6 @@ import Tingeso.Backend.repositories.ClientRepository;
 import Tingeso.Backend.repositories.ReservationRepository;
 import Tingeso.Backend.repositories.TariffRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import java.util.UUID;
 
@@ -118,6 +116,10 @@ public class ReservationService {
         return reservationRepository.findAllPendingReservations();
     }
 
+    public List<ReservationEntity> getAllReservations() {
+        return reservationRepository.findAll();
+    }
+
     public ReservationEntity approveReservation(String reservationCode){
         ReservationEntity reservation = reservationRepository.findByReservationCode(reservationCode);
         if (reservation == null) {
@@ -136,4 +138,11 @@ public class ReservationService {
         return reservationRepository.save(reservation);
     }
 
+    public List<ReservationEntity> getAllApprovedReservations() {
+        List<ReservationEntity> approvedReservations = reservationRepository.findByStatus(1);
+        if (approvedReservations.isEmpty()) {
+            throw new IllegalArgumentException("No se encontraron reservas aprobadas");
+        }
+        return approvedReservations;
+    }
 }

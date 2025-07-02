@@ -3,6 +3,12 @@ import ClientService from "../services/ClientService.js";
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const MakingReservation = () => {
+    const location = useLocation();
+    const { name } = location.state || { name: "Cliente" }; // Valor predeterminado si no se pasa el nombre
+    console.log("Nombre recibido en ClientLogged:", name);
+
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         date: '',
         time: '',
@@ -10,13 +16,22 @@ const MakingReservation = () => {
         peopleCount: '',
     });
 
-    const location = useLocation();
-    const { name } = location.state || { name: "Cliente" };;
     console.log("Nombre de usuario recibido:", name);
     const [feedbackMessage, setFeedbackMessage] = useState("");
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+
+        // Prevent selecting a past date
+        if (name === "date") {
+            const today = new Date().toISOString().split("T")[0];
+            if (value < today) {
+            setFeedbackMessage("No puede seleccionar una fecha pasada.");
+            } else {
+            setFeedbackMessage("");
+            }
+        }
+
         setFormData({ ...formData, [name]: value });
     };
 
@@ -53,6 +68,13 @@ const MakingReservation = () => {
 
     return (
         <div>
+            <div>
+                <p style={{ textAlign: 'left' }}>
+                    <button onClick={() => navigate('/ClientLogged', { state: { name } })}>
+                        Volver a la página principal
+                    </button>
+                </p>
+            </div>
             <h1>Hacer una Reserva</h1>
             <form onSubmit={handleSubmit}>
                 <div>

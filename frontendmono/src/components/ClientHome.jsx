@@ -13,8 +13,15 @@ const ClienteHome = () => {
         navigate('/ClientLogin');
     }
 
+    const goToHome = () => {
+        navigate('/');
+    }
+
     return (
-        <div style={{ textAlign: 'center', marginTop: '50px' }}>
+        <div style={{ textAlign: 'left', marginTop: '50px' }}>
+            <button variant="contained" onClick={goToHome} style={{ marginBottom: 20, marginLeft: 10 }}>
+                Volver a la página principal
+            </button>
             <h1>Bienvenido a la sección cliente</h1>
             <div style={{ marginTop: '20px' }}>
                 <button 
