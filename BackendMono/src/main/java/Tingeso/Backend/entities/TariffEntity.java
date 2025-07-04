@@ -30,16 +30,16 @@ public class TariffEntity {
         return tariffId;
     }
 
-    public int getBookingType() {
-        return bookingType;
-    }
-
     public double getBasePrice() {
         return basePrice;
     }
 
     public int getReservationDuration() {
         return reservationDuration;
+    }
+
+    public int getBookingType() {
+        return bookingType;
     }
 
     public void setBookingType(int bookingType) {

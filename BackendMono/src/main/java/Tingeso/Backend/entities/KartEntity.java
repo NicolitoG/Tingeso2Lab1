@@ -22,20 +22,8 @@ public class KartEntity {
     private int state; //0 = available, 1 = in use, 2 = maintenance
 
 
-    public Long getKartId() {
-        return kartId;
-    }
-
     public void setKartId(Long kartId) {
         this.kartId = kartId;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
     }
 
     public int getState() {

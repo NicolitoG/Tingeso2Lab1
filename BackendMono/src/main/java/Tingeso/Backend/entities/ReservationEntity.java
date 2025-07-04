@@ -29,7 +29,7 @@ public class ReservationEntity {
 
     @ManyToOne
     @JoinColumn(name = "tariffId", nullable = false)
-    private TariffEntity ReservationTariff; // Relation to TariffEntity for base price and duration
+    private TariffEntity reservationTariff; // Relation to TariffEntity for base price and duration
 
     private int numberOfPeople; // Total number of people in the reservation
 
@@ -44,13 +44,6 @@ public class ReservationEntity {
 
 
 
-    public Long getReservationId() {
-        return reservationId;
-    }
-
-    public void setReservationId(Long reservationId) {
-        this.reservationId = reservationId;
-    }
 
     public String getReservationCode() {
         return reservationCode;
@@ -60,24 +53,26 @@ public class ReservationEntity {
         this.reservationCode = reservationCode;
     }
 
-    public LocalDate getReservationDate() {
-        return reservationDate;
-    }
 
     public void setReservationDate(LocalDate reservationDate) {
         this.reservationDate = reservationDate;
+    }
+
+
+    public void setReservationStartTime(LocalTime reservationStartTime) {
+        this.reservationStartTime = reservationStartTime;
     }
 
     public LocalTime getReservationStartTime() {
         return reservationStartTime;
     }
 
-    public void setReservationStartTime(LocalTime reservationStartTime) {
-        this.reservationStartTime = reservationStartTime;
-    }
-
     public LocalTime getReservationEndTime() {
         return reservationEndTime;
+    }
+
+    public LocalDate getReservationDate() {
+        return reservationDate;
     }
 
     public void setReservationEndTime(LocalTime reservationEndTime) {
@@ -85,11 +80,11 @@ public class ReservationEntity {
     }
 
     public TariffEntity getReservationTariff() {
-        return ReservationTariff;
+        return reservationTariff;
     }
 
     public void setReservationTariff(TariffEntity reservationTariff) {
-        ReservationTariff = reservationTariff;
+        this.reservationTariff = reservationTariff;
     }
 
     public int getNumberOfPeople() {

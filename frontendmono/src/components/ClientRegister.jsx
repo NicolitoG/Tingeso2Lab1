@@ -30,7 +30,7 @@ const ClientRegister = () => {
         const newUser = {
             name: formData.name,
             email: formData.email,
-            BirthDate: formattedBirthdate,
+            birthDate: formattedBirthdate,
         };
 
         ClientService.register(newUser)

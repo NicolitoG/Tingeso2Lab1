@@ -33,24 +33,13 @@ public class ReservationDetailEntity {
 
     //getters y setters
 
-    public Long getReservationDetailId() {
-        return reservationDetailId;
-    }
 
     public void setReservationDetailId(Long reservationDetailId) {
         this.reservationDetailId = reservationDetailId;
     }
 
-    public ReservationEntity getReservation() {
-        return reservation;
-    }
-
     public void setReservation(ReservationEntity reservation) {
         this.reservation = reservation;
-    }
-
-    public String getClientName() {
-        return clientName;
     }
 
     public void setClientName(String clientName) {
@@ -73,19 +62,7 @@ public class ReservationDetailEntity {
         this.appliedDiscount = appliedDiscount;
     }
 
-    public double getFinalAmount() {
-        return finalAmount;
-    }
-
     public void setFinalAmount(double finalAmount) {
         this.finalAmount = finalAmount;
-    }
-
-    public KartEntity getAssignedKart() {
-        return assignedKart;
-    }
-
-    public void setAssignedKart(KartEntity assignedKart) {
-        this.assignedKart = assignedKart;
     }
 }

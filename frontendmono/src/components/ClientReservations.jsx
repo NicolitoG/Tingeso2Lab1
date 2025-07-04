@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ClientService from "../services/ClientService.js";
 import { useNavigate, useLocation } from 'react-router-dom';
+import { red } from '@mui/material/colors';
 
 const states = {
     0: "Pendiente",
@@ -34,6 +35,7 @@ const ClientReservations = () => {
                 setReservas(response.data);
                 setErrorMessage("");
             } catch (error) {
+                console.error("Error fetching reservations:", error);
                 setErrorMessage("Error al cargar las reservas. Por favor, intente nuevamente.");
             } finally {
                 setIsLoading(false);
@@ -77,6 +79,7 @@ const ClientReservations = () => {
                                 <th style={{ color: "#4a1050" }}>Tarifa</th>
                                 <th style={{ color: "#4a1050" }}>Cantidad de personas</th>
                                 <th style={{ color: "#4a1050" }}>Estado</th>
+                                <th style={{ color: "#4a1050" }}>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -88,6 +91,29 @@ const ClientReservations = () => {
                                     <td style={{ color: "#4a1050" }}>{NombreTarifa[reserva.reservationTariff.bookingType]}</td>
                                     <td style={{ color: "#4a1050" }}>{reserva.numberOfPeople}</td>
                                     <td style={{ color: "#4a1050" }}>{states[reserva.status]}</td>
+                                    <td>
+                                        <button
+                                            style={{ color: red }}
+                                            onClick={async () => {
+                                                const confirmDelete = window.confirm("¿Está seguro que desea eliminar esta reserva?");
+                                                if (confirmDelete) {
+                                                    try {
+                                                        await ClientService.deleteReservation(reserva.reservationCode);
+                                                        setReservas((prevReservas) =>
+                                                            prevReservas.filter(
+                                                                (r) => r.reservationCode !== reserva.reservationCode
+                                                            )
+                                                        );
+                                                    } catch (error) {
+                                                        console.error("Error deleting reservation:", error);
+                                                        setErrorMessage("Error al eliminar la reserva. Por favor, intente nuevamente.");
+                                                    }
+                                                }
+                                            }}
+                                        >
+                                            Eliminar
+                                        </button>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

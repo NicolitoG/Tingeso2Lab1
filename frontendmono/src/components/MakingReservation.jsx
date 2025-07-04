@@ -5,7 +5,6 @@ import { useNavigate, useLocation } from 'react-router-dom';
 const MakingReservation = () => {
     const location = useLocation();
     const { name } = location.state || { name: "Cliente" }; // Valor predeterminado si no se pasa el nombre
-    console.log("Nombre recibido en ClientLogged:", name);
 
     const navigate = useNavigate();
 
@@ -16,7 +15,6 @@ const MakingReservation = () => {
         peopleCount: '',
     });
 
-    console.log("Nombre de usuario recibido:", name);
     const [feedbackMessage, setFeedbackMessage] = useState("");
 
     const handleChange = (e) => {

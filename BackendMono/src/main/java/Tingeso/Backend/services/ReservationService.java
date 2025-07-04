@@ -7,12 +7,10 @@ import Tingeso.Backend.entities.TariffEntity;
 import Tingeso.Backend.repositories.ClientRepository;
 import Tingeso.Backend.repositories.ReservationRepository;
 import Tingeso.Backend.repositories.TariffRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.UUID;
 
 
-import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
 import java.time.LocalDate;
@@ -20,40 +18,88 @@ import java.time.LocalTime;
 
 @Service
 public class ReservationService {
-    @Autowired
+    final
     ReservationRepository reservationRepository;
 
-    @Autowired
+    final
     TariffRepository tariffRepository;
 
-    @Autowired
+    final
     ClientRepository clientRepository;
+
+    public ReservationService(ReservationRepository reservationRepository, TariffRepository tariffRepository, ClientRepository clientRepository) {
+        this.reservationRepository = reservationRepository;
+        this.tariffRepository = tariffRepository;
+        this.clientRepository = clientRepository;
+    }
 
     public String generateReservationCode() {
         return UUID.randomUUID().toString().substring(0, 8); // Tomamos solo los primeros 8 caracteres
     }
 
+    public boolean isReservationAvailable(LocalDate date, LocalTime startTime, int bookingType) {
+        TariffEntity tariff = tariffRepository.findByBookingType(bookingType);
+        LocalTime endTime = startTime.plusMinutes(tariff.getReservationDuration());
 
-    public ReservationEntity createReservation(LocalDate Date, LocalTime startTime, int bookingType, int NumberOfPeople, String contactClient) {
+        List<ReservationEntity> existingReservations = reservationRepository.findByReservationDateAndReservationStartTimeBetween(
+                date, startTime, endTime);
+
+        return existingReservations.isEmpty();
+    }
+
+    public boolean isReservationValid(ReservationEntity reservation) {
+        if (reservation.getNumberOfPeople() <= 0 || reservation.getNumberOfPeople() > 16) {
+            throw new IllegalArgumentException("El número de personas debe ser positivo y menor a 16.");
+        }
+        if (reservation.getReservationStartTime() == null || reservation.getReservationEndTime() == null) {
+            throw new IllegalArgumentException("La hora de inicio y fin de la reserva no pueden ser nulas.");
+        }
+        if (reservation.getReservationDate() == null || reservation.getReservationDate().isBefore(LocalDate.now())) {
+            throw new IllegalArgumentException("La fecha de la reserva no puede ser una fecha pasada.");
+        }
+        return true;
+    }
+
+    public ReservationEntity createReservation(LocalDate date, LocalTime startTime, int bookingType, int numberOfPeople, String contactClient) {
+
+
         TariffEntity tariff = tariffRepository.findByBookingType(bookingType);
 
         ReservationEntity reservation = new ReservationEntity();
         reservation.setReservationCode(generateReservationCode()); // asignar codigo
-        reservation.setReservationDate(Date); //asignar fecha
+        reservation.setReservationDate(date); //asignar fecha
         reservation.setReservationStartTime(startTime); //asignar hora
         reservation.setReservationEndTime(startTime.plusMinutes(tariff.getReservationDuration())); //asignar hora fin
         reservation.setReservationTariff(tariff); //asignar tarifa
-        reservation.setNumberOfPeople(NumberOfPeople); //asignar numero de personas
+        reservation.setNumberOfPeople(numberOfPeople); //asignar numero de personas
         reservation.setContactClient(clientRepository.findByName(contactClient)); //asignar cliente
         reservation.setListOfReservationDetails(new ArrayList<>()); //asignar lista de detalles de reserva
+
+        // Verificar disponibilidad de la reserva
+        if (!isReservationAvailable(date, startTime, bookingType)) {
+            throw new IllegalArgumentException("Ya hay una reserva en ese horario.");
+        }
+        // Validar la reserva
+        if (!isReservationValid(reservation)) {
+            throw new IllegalArgumentException("Reserva inválida.");
+        }
 
         // Guardar la reserva en la base de datos
         return reservationRepository.save(reservation);
     }
 
+    public void deleteReservation(String reservationCode) {
+        ReservationEntity reservation = reservationRepository.findByReservationCode(reservationCode);
+        if (reservation == null) {
+            throw new IllegalArgumentException("Reserva no encontrada");
+        }
+        reservationRepository.delete(reservation);
+    }
+
     public List<ReservationEntity> getReservationsByClientId(Long clientId) {
         ClientEntity client = clientRepository.findById(clientId)
                 .orElseThrow(() -> new IllegalArgumentException("Cliente no encontrado"));
+
         return reservationRepository.findByContactClient(client);
     }
 

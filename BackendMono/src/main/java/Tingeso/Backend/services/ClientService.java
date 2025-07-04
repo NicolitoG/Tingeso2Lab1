@@ -2,24 +2,26 @@ package Tingeso.Backend.services;
 
 import Tingeso.Backend.entities.ClientEntity;
 import Tingeso.Backend.repositories.ClientRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ClientService {
-    @Autowired
+    final
     ClientRepository clientRepository;
 
-    public ArrayList<ClientEntity> getClients(){
-        return (ArrayList<ClientEntity>) clientRepository.findAll();
+    public ClientService(ClientRepository clientRepository) {
+        this.clientRepository = clientRepository;
+    }
+
+    public List<ClientEntity> getClients(){
+        return clientRepository.findAll();
     }
 
     public ClientEntity saveClient(ClientEntity client) {
         if (clientRepository.findByName(client.getName()) != null) {
-            throw new RuntimeException("There is already an user with that name");
+            throw new IllegalArgumentException("Client not found");
         }
         return clientRepository.save(client);
     }
@@ -46,7 +48,7 @@ public class ClientService {
         return "nonValid"; // for cases where visits are negative
     }
 
-    public void IncrementVisits(ClientEntity client) {
+    public void incrementVisits(ClientEntity client) {
         int visits = client.getMonthlyVisits();
         client.setMonthlyVisits(visits + 1);
         clientRepository.save(client);

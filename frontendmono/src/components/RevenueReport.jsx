@@ -38,27 +38,43 @@ const RevenueReport = () => {
                     const month = fecha.getMonth() + 1;
                     const tipo = r.reservationTariff.bookingType;
                     const precio = r.reservationTariff.basePrice || 0;
+                    const numberOfPeople = r.numberOfPeople || 1;
 
                     if (!ingresos[year]) ingresos[year] = {};
                     if (!ingresos[year][month]) ingresos[year][month] = { 0: 0, 1: 0, 2: 0 };
                     if (tipo in ingresos[year][month]) {
-                        ingresos[year][month][tipo] += precio;
+                        ingresos[year][month][tipo] += precio * numberOfPeople;
                     }
                 });
 
                 // Convertir a array para la tabla
-                const rows = [];
-                Object.keys(ingresos).sort((a, b) => b - a).forEach(year => {
-                    Object.keys(ingresos[year]).sort((a, b) => a - b).forEach(month => {
-                        rows.push({
-                            year,
-                            month: getMonthName(Number(month)),
-                            ...ingresos[year][month]
+                const rows = convertIngresosToRows(ingresos);
+                setTableData(rows);
+                
+
+                function getSortedKeys(obj, sortFn) {
+                    return Object.keys(obj).sort(sortFn);
+                }
+            
+                function convertIngresosToRows(ingresos) {
+                    const rows = [];
+                    const sortedYears = getSortedKeys(ingresos, (a, b) => b - a);
+                    sortedYears.forEach(year => {
+                        const sortedMonths = getSortedKeys(ingresos[year], (a, b) => a - b);
+                        sortedMonths.forEach(month => {
+                            rows.push(createRow(year, month, ingresos[year][month]));
                         });
                     });
-                });
-
-                setTableData(rows);
+                    return rows;
+                }
+                
+                function createRow(year, month, monthData) {
+                    return {
+                        year,
+                        month: getMonthName(Number(month)),
+                        ...monthData
+                    };
+                }
             } catch {
                 setError("Error al obtener los datos.");
             }

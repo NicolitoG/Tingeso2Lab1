@@ -48,7 +48,7 @@ const AdminRack = () => {
 
     <div style={{ height: '80vh', padding: 20 }}>
             <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                <button variant="contained" onClick={goToAdminSection} style={{ marginBottom: 20 }}>
+                <button onClick={goToAdminSection} style={{ marginBottom: 20 }}>
                     Vista Reservas
                 </button>
             </div>

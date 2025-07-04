@@ -128,13 +128,13 @@ const AdminSection = () => {
     return (
         <div style={{ padding: 20 }}>
             <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                <button variant="contained" onClick={goToHome} style={{ marginBottom: 20, marginLeft: 10 }}>
+                <button onClick={goToHome} style={{ marginBottom: 20, marginLeft: 10 }}>
                     Volver a la página principal
                 </button>
-                <button variant="contained" onClick={goToRack} style={{ marginBottom: 20 }}>
+                <button onClick={goToRack} style={{ marginBottom: 20 }}>
                     Vista rack semanal
                 </button>
-                <button variant="contained" onClick={goToRevenueReport} style={{ marginBottom: 20, marginLeft: 10 }}>
+                <button onClick={goToRevenueReport} style={{ marginBottom: 20, marginLeft: 10 }}>
                     Reporte de ingresos
                 </button>
 

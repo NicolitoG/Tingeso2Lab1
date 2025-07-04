@@ -9,7 +9,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
-import java.util.Optional;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -39,7 +39,7 @@ class ClientServiceTest {
         clients.add(client);
         when(clientRepository.findAll()).thenReturn(clients);
 
-        ArrayList<ClientEntity> result = clientService.getClients();
+        List<ClientEntity> result = clientService.getClients();
 
         assertNotNull(result);
         assertEquals(1, result.size());
@@ -112,7 +112,7 @@ class ClientServiceTest {
 
     @Test
     void testIncrementVisits() {
-        clientService.IncrementVisits(client);
+        clientService.incrementVisits(client);
         assertEquals(4, client.getMonthlyVisits());
         verify(clientRepository, times(1)).save(client);
     }

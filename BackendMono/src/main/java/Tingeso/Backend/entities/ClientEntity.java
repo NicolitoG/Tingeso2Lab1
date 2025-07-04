@@ -26,7 +26,7 @@ public class ClientEntity {
     private int monthlyVisits;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    private Date BirthDate;
+    private Date birthDate;
 
     public int getMonthlyVisits() {
         return monthlyVisits;
@@ -52,19 +52,7 @@ public class ClientEntity {
         this.name = name;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public void setMonthlyVisits(int monthlyVisits) {
         this.monthlyVisits = monthlyVisits;
-    }
-
-    public Date getBirthDate() {
-        return BirthDate;
-    }
-
-    public void setBirthDate(Date birthDate) {
-        BirthDate = birthDate;
     }
 }

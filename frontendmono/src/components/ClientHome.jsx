@@ -19,7 +19,7 @@ const ClienteHome = () => {
 
     return (
         <div style={{ textAlign: 'left', marginTop: '50px' }}>
-            <button variant="contained" onClick={goToHome} style={{ marginBottom: 20, marginLeft: 10 }}>
+            <button onClick={goToHome} style={{ marginBottom: 20, marginLeft: 10 }}>
                 Volver a la página principal
             </button>
             <h1>Bienvenido a la sección cliente</h1>

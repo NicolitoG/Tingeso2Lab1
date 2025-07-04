@@ -36,6 +36,10 @@ const rejectReservation = (reservationCode) => {
     return httpClient.put(`/api/v1/reservations/reject/${reservationCode}`);
 };
 
+const deleteReservation = (reservationCode) => {
+    return httpClient.delete(`/api/v1/reservations/delete/${reservationCode}`);
+};
+
 
 export default {
     register,
@@ -46,5 +50,6 @@ export default {
     getAllPendingReservations,
     approveReservation,
     rejectReservation,
-    getAllApprovedReservations
+    getAllApprovedReservations,
+    deleteReservation
 }

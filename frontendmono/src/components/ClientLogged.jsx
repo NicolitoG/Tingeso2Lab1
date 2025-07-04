@@ -33,7 +33,7 @@ const ClientLogged = () => {
 
       <p>
         <button onClick={goToReservations}>Ver mis reservas</button>
-        <button onClick={goToReservarHora}>Reservar rora</button>
+        <button onClick={goToReservarHora}>Reservar hora</button>
       </p>
     </div>
   );

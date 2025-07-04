@@ -12,7 +12,7 @@ import org.springframework.test.context.TestPropertySource;
 		"spring.datasource.password=",
 		"spring.jpa.hibernate.ddl-auto=none"
 })
-public class Backend1ApplicationTests {
+class Backend1ApplicationTests {
 	@Test
 	void contextLoads() {
 	}
