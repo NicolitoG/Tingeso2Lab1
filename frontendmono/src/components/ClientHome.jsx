@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const ClienteHome = () => {
@@ -34,7 +33,7 @@ const ClienteHome = () => {
                     style={{ padding: '10px 20px', fontSize: '16px' }}
                     onClick={goToLogin}
                 >
-                    Login
+                    Iniciar sesión
                 </button>
             </div>
         </div>

@@ -1,10 +1,10 @@
-package Tingeso.Backend.controllers;
+package tingeso.backend.controllers;
 
-import Tingeso.Backend.entities.ReservationEntity;
-import Tingeso.Backend.services.ReservationService;
+import tingeso.backend.entities.ReservationEntity;
+import tingeso.backend.services.ReservationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import Tingeso.Backend.DTOs.ReservationDTO;
+import tingeso.backend.DTOs.ReservationDTO;
 import java.util.logging.Logger;
 
 import java.util.List;

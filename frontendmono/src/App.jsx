@@ -1,5 +1,4 @@
 import './App.css'
-import Button from './components/Button.jsx'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import PaginaPrincipal from './components/PaginaPrincipal.jsx'
 import ClientHome from './components/ClientHome.jsx'
@@ -11,6 +10,7 @@ import ClientReservations from './components/ClientReservations.jsx'
 import AdminSection from './components/AdminSection.jsx'
 import AdminRack from './components/AdminRack.jsx'
 import RevenueReport from './components/RevenueReport.jsx'
+import FrequentQuestions from './components/FrequentQuestions.jsx'
 
 
 function App() {
@@ -29,6 +29,9 @@ function App() {
           <Route path="/Admin" element={<AdminSection/>} />
           <Route path = "/Admin/Rack" element = {<AdminRack/>}/>
           <Route path="/Admin/RevenueReport" element={<RevenueReport/>} />
+          <Route path="/FrequentQuestions" element={<FrequentQuestions/>} />
+          
+          {/* Ruta por defecto para manejar 404 */}
 
         </Routes>
       </div>

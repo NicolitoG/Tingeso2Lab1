@@ -1,9 +1,11 @@
-package Tingeso.Backend.services;
+package tingeso.backend.services;
 
-import Tingeso.Backend.entities.ClientEntity;
-import Tingeso.Backend.repositories.ClientRepository;
+import tingeso.backend.entities.ClientEntity;
+import tingeso.backend.repositories.ClientRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -22,6 +24,9 @@ public class ClientService {
     public ClientEntity saveClient(ClientEntity client) {
         if (clientRepository.findByName(client.getName()) != null) {
             throw new IllegalArgumentException("Client not found");
+        }
+        if (client.getBirthDate() != null && client.getBirthDate().after(java.sql.Date.valueOf(LocalDate.now()))) {
+            throw new IllegalArgumentException("La fecha de nacimiento no puede ser mayor a la fecha actual");
         }
         return clientRepository.save(client);
     }

@@ -1,7 +1,7 @@
-package Tingeso.Backend.repositories;
+package tingeso.backend.repositories;
 
-import Tingeso.Backend.entities.KartEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import tingeso.backend.entities.KartEntity;
 import org.springframework.stereotype.Repository;
 
 @Repository

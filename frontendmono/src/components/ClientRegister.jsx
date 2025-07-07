@@ -36,63 +36,79 @@ const ClientRegister = () => {
         ClientService.register(newUser)
             .then((response) => {
                 console.log("User has been added.", response.data);
-                setFeedbackMessage("El usuario ha sido registrado correctamente, redirigiendo...");
+                setFeedbackMessage("El usuario ha sido registrado correctamente, Volviendo...");
                 setTimeout(() => {
                     navigate("/ClientHome");
-                }, 2000);
+                }, 3000);
             })
             .catch((error) => {
-                setFeedbackMessage("Error: There was un problema registrando el usuario.");
+                setFeedbackMessage("Error: Hubo un problema registrando el usuario.");
                 console.error("An error occurred while creating a new user.", error);
             });
     };
 
-    return (
-        <div>
-            <button onClick={goToClientSection} style={{ marginBottom: 20 }}>
-                Volver
-            </button>
-            <h2>Registro de usuario</h2>
-            {feedbackMessage && <p style={{ color: "green" }}>{feedbackMessage}</p>}
-            <form onSubmit={handleSubmit} style={{ maxWidth: 400, margin: "0 auto" }}>
-                <div className="formGroup" style={{ marginBottom: 15 }}>
-                    <label htmlFor="name">Nombre</label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        style={{ width: "100%" }}
-                    />
-                </div>
-                <div className="formGroup" style={{ marginBottom: 15 }}>
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        style={{ width: "100%" }}
-                    />
-                </div>
-                <div className="formGroup" style={{ marginBottom: 15 }}>
-                    <label htmlFor="dateOfBirth">Fecha de nacimiento</label>
-                    <input
-                        type="date"
-                        id="dateOfBirth"
-                        name="dateOfBirth"
-                        value={formData.dateOfBirth}
-                        onChange={handleChange}
-                        required
-                        style={{ width: "100%" }}
-                    />
-                </div>
-                <button type="submit">Registrar</button>
-            </form>
+return (
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div style={{ width: '100%', textAlign: 'left', marginBottom: '20px' }}>
+                <button onClick={goToClientSection}>
+                    Volver
+                </button>
+            </div>
+            <div style={{ backgroundColor: "rgb(25, 76, 87)", color: 'white', padding: '20px', borderRadius: '10px', width: '80%' }}>
+                <h2 style={{ textAlign: 'center' }}>Registro de usuario</h2>
+                <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+                    <div style={{ marginBottom: '20px', textAlign: 'center', width: '100%' }}>
+                        <label htmlFor="name" style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>Nombre</label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            required
+                            style={{ width: "100%", textAlign: 'center', backgroundColor: 'white', color: 'black' }}
+                        />
+                    </div>
+                    <div style={{ marginBottom: '20px', textAlign: 'center', width: '100%' }}>
+                        <label htmlFor="email" style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                            style={{ width: "100%", textAlign: 'center', backgroundColor: 'white', color: 'black' }}
+                        />
+                    </div>
+                    <div style={{ marginBottom: '20px', textAlign: 'center', width: '100%' }}>
+                        <label htmlFor="dateOfBirth" style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>Fecha de nacimiento</label>
+                        <input
+                            type="date"
+                            id="dateOfBirth"
+                            name="dateOfBirth"
+                            value={formData.dateOfBirth}
+                            onChange={handleChange}
+                            required
+                            style={{ width: "100%", textAlign: 'center', backgroundColor: 'white', color: 'black' }}
+                        />
+                    </div>
+                    <button type="submit">Registrar</button>
+                </form>
+                {feedbackMessage && <p style={{
+                    color: feedbackMessage.startsWith("Error") ? "red" : "green",
+                    border: "3px solid",
+                    borderColor: "#4a1050",
+                    backgroundColor: "white",
+                    fontSize: "1.2rem",
+                    fontWeight: "bold",
+                    marginBottom: "20px",
+                    marginTop: "20px",
+                    textAlign: "center"
+                }}>
+                    {feedbackMessage}
+                </p>}
+            </div>
         </div>
     );
 };

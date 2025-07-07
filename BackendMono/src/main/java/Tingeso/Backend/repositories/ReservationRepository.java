@@ -1,7 +1,7 @@
-package Tingeso.Backend.repositories;
+package tingeso.backend.repositories;
 
-import Tingeso.Backend.entities.ClientEntity;
-import Tingeso.Backend.entities.ReservationEntity;
+import tingeso.backend.entities.ClientEntity;
+import tingeso.backend.entities.ReservationEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

@@ -1,4 +1,4 @@
-package Tingeso.Backend.DTOs;
+package tingeso.backend.DTOs;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

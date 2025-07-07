@@ -1,12 +1,12 @@
-package Tingeso.Backend.services;
+package tingeso.backend.services;
 
-import Tingeso.Backend.entities.ClientEntity;
-import Tingeso.Backend.entities.ReservationDetailEntity;
-import Tingeso.Backend.entities.ReservationEntity;
-import Tingeso.Backend.entities.TariffEntity;
-import Tingeso.Backend.repositories.ClientRepository;
-import Tingeso.Backend.repositories.ReservationRepository;
-import Tingeso.Backend.repositories.TariffRepository;
+import tingeso.backend.entities.ClientEntity;
+import tingeso.backend.entities.ReservationDetailEntity;
+import tingeso.backend.entities.ReservationEntity;
+import tingeso.backend.entities.TariffEntity;
+import tingeso.backend.repositories.ClientRepository;
+import tingeso.backend.repositories.ReservationRepository;
+import tingeso.backend.repositories.TariffRepository;
 import org.springframework.stereotype.Service;
 import java.util.UUID;
 

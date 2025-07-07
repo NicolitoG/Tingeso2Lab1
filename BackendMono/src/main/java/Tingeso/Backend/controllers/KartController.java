@@ -1,6 +1,6 @@
-package Tingeso.Backend.controllers;
+package tingeso.backend.controllers;
 
-import Tingeso.Backend.services.KartService;
+import tingeso.backend.services.KartService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

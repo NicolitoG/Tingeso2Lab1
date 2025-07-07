@@ -101,9 +101,9 @@ const RevenueReport = () => {
                     </button>
                 </p>
             </div>
-            <h1>Reporte de Ingresos por Mes y Año</h1>
+            <h1>Reporte de Ingresos por Número de vueltas o tiempo máximo</h1>
             {error && <p style={{ color: "red" }}>{error}</p>}
-            <table border="1" cellPadding={8}>
+            <table border="1" cellPadding={8} align='center'>
                 <thead>
                     <tr>
                         <th style={{ color: "#4a1050" }}>Año</th>

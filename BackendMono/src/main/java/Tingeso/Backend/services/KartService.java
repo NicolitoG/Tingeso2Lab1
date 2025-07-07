@@ -1,7 +1,7 @@
-package Tingeso.Backend.services;
+package tingeso.backend.services;
 
-import Tingeso.Backend.entities.KartEntity;
-import Tingeso.Backend.repositories.KartRepository;
+import tingeso.backend.entities.KartEntity;
+import tingeso.backend.repositories.KartRepository;
 import org.springframework.stereotype.Service;
 
 @Service

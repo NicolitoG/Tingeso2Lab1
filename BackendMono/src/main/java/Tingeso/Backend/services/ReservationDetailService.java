@@ -1,7 +1,7 @@
-package Tingeso.Backend.services;
+package tingeso.backend.services;
 
-import Tingeso.Backend.entities.ReservationDetailEntity;
-import Tingeso.Backend.repositories.ReservationDetailRepository;
+import tingeso.backend.entities.ReservationDetailEntity;
+import tingeso.backend.repositories.ReservationDetailRepository;
 import org.springframework.stereotype.Service;
 
 @Service

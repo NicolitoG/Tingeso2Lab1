@@ -1,4 +1,4 @@
-package Tingeso.Backend;
+package tingeso.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

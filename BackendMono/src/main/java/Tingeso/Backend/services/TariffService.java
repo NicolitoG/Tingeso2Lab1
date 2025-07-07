@@ -1,7 +1,7 @@
-package Tingeso.Backend.services;
+package tingeso.backend.services;
 
-import Tingeso.Backend.entities.TariffEntity;
-import Tingeso.Backend.repositories.TariffRepository;
+import tingeso.backend.entities.TariffEntity;
+import tingeso.backend.repositories.TariffRepository;
 import org.springframework.stereotype.Service;
 
 @Service

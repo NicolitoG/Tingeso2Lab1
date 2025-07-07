@@ -1,4 +1,4 @@
-package Tingeso.Backend.entities;
+package tingeso.backend.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,9 +8,6 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "reservation_detail")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class ReservationDetailEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -64,5 +61,21 @@ public class ReservationDetailEntity {
 
     public void setFinalAmount(double finalAmount) {
         this.finalAmount = finalAmount;
+    }
+
+    public Long getReservationDetailId() {
+        return reservationDetailId;
+    }
+
+    public ReservationEntity getReservation() {
+        return reservation;
+    }
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public double getFinalAmount() {
+        return finalAmount;
     }
 }

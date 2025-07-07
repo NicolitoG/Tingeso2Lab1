@@ -1,4 +1,4 @@
-package Tingeso.Backend.DTOs;
+package tingeso.backend.DTOs;
 
 public class BoletaDTO {
     private String clientName;

@@ -1,7 +1,7 @@
-package Tingeso.Backend.controllers;
+package tingeso.backend.controllers;
 
-import Tingeso.Backend.entities.ClientEntity;
-import Tingeso.Backend.services.ClientService;
+import tingeso.backend.entities.ClientEntity;
+import tingeso.backend.services.ClientService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

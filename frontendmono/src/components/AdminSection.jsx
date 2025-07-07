@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ClientService from "../services/ClientService.js";
 import { Table, TableHead, TableBody, TableCell, TableRow, TableContainer, Paper, Pagination, Button, Menu, MenuItem } from '@mui/material';
 import { useNavigate } from 'react-router-dom';

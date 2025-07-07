@@ -1,4 +1,4 @@
-package Tingeso.Backend.entities;
+package tingeso.backend.entities;
 
 import lombok.*;
 
