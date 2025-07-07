@@ -128,7 +128,7 @@ const AdminSection = () => {
     return (
         <div style={{ padding: 20 }}>
             <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                <button onClick={goToHome} style={{ marginBottom: 20, marginLeft: 10 }}>
+                <button onClick={goToHome} style={{ marginBottom: 20, marginLeft: 10, marginRight: 10 }}>
                     Volver a la página principal
                 </button>
                 <button onClick={goToRack} style={{ marginBottom: 20 }}>
@@ -137,13 +137,8 @@ const AdminSection = () => {
                 <button onClick={goToRevenueReport} style={{ marginBottom: 20, marginLeft: 10 }}>
                     Reporte de ingresos
                 </button>
-
             </div>
 
-
-
-
-        
             <h1>Sección de Admin</h1>
             <p>Aquí puedes aprobar o rechazar reservas pendientes</p>
 
@@ -181,6 +176,8 @@ const AdminSection = () => {
                                         <TableCell>
                                             <Button
                                                 variant="contained"
+                                                color="primary" // Change the color to "primary", "secondary", or "error"
+                                                sx={{ backgroundColor: "#4a1050" }} // Custom color using sx
                                                 onClick={(event) => handleMenuOpen(event, reserva)}
                                             >
                                                 Opciones

@@ -17,24 +17,15 @@ const MakingReservation = () => {
 
     const [feedbackMessage, setFeedbackMessage] = useState("");
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-
-        // Prevent selecting a past date
-        if (name === "date") {
-            const today = new Date().toISOString().split("T")[0];
-            if (value < today) {
-            setFeedbackMessage("No puede seleccionar una fecha pasada.");
-            } else {
-            setFeedbackMessage("");
-            }
-        }
-
-        setFormData({ ...formData, [name]: value });
-    };
-
     const handleSubmit = (e) => {
+
         e.preventDefault();
+
+        const today = new Date().toISOString().split("T")[0];
+        if (formData.date < today) {
+            setFeedbackMessage("Error: No puede seleccionar una fecha pasada.");
+            return;
+        }
 
         // Validar datos
         if (!formData.date || !formData.time || !formData.reservationType || !formData.peopleCount) {
@@ -103,7 +94,7 @@ const MakingReservation = () => {
                             id="date"
                             name="date"
                             value={formData.date}
-                            onChange={handleChange}
+                            onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                             required
                             style={{ textAlign: 'center', backgroundColor: 'white', color: 'black' }}
                         />
@@ -115,7 +106,7 @@ const MakingReservation = () => {
                             id="time"
                             name="time"
                             value={formData.time}
-                            onChange={handleChange}
+                            onChange={(e) => setFormData({ ...formData, time: e.target.value })}
                             style={{ textAlign: 'center', backgroundColor: 'white', color: 'black'  }}
                         />
                     </div>
@@ -125,7 +116,7 @@ const MakingReservation = () => {
                             id="reservationType"
                             name="reservationType"
                             value={formData.reservationType}
-                            onChange={handleChange}
+                            onChange={(e) => setFormData({ ...formData, reservationType: e.target.value })}
                             style={{ textAlign: 'center', backgroundColor: 'white', color: 'black'  }}
                         >
                             <option value="">Seleccione una opción</option>
@@ -141,7 +132,7 @@ const MakingReservation = () => {
                             id="peopleCount"
                             name="peopleCount"
                             value={formData.peopleCount}
-                            onChange={handleChange}
+                            onChange={(e) => setFormData({ ...formData, peopleCount: e.target.value })}
                             style={{ textAlign: 'center', backgroundColor: 'white', color: 'black'  }}
                         />
                     </div>

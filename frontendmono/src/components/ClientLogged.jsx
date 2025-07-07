@@ -30,11 +30,8 @@ const ClientLogged = () => {
         <button onClick={goToInicioSesion}>Cerrar sesión</button>
       </p>
       <h1>Cliente {name}, logueado correctamente</h1>
-
-      <p>
-        <button onClick={goToReservations}>Ver mis reservas</button>
+        <button style={{ marginRight: '5px' }} onClick={goToReservations}>Ver mis reservas</button>
         <button onClick={goToReservarHora}>Reservar hora</button>
-      </p>
     </div>
   );
 };
