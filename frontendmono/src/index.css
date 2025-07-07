@@ -65,5 +65,23 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
-  }
+  } 
+}
+
+.form-outer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form-back-btn {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 20px;
+}
+.form-inner-container {
+    background-color: rgb(25, 76, 87);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
 }

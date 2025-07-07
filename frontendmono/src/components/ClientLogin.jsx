@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import userService from "../services/ClientService";
+import FormField from "./FormField";
+import FeedbackMessage from "./FeedbackMessage";
+import FormContainer from "./FormContainer";
 
 const ClientLogin = () => {
     const [name, setName] = useState("");
@@ -65,58 +68,32 @@ const ClientLogin = () => {
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <div style={{ width: '100%', textAlign: 'left', marginBottom: '20px' }}>
-                <button onClick={goToClientSection}>
-                    Volver
-                </button>
-            </div>
-            <div style={{ backgroundColor: "rgb(25, 76, 87)", color: 'white', padding: '20px', borderRadius: '10px', width: '80%' }}>
-                <h1 style={{ textAlign: 'center' }}>Iniciar Sesión</h1>
-                <form onSubmit={loginUser} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
-                    <div style={{ marginBottom: '20px', textAlign: 'center', width: '100%' }}>
-                        <label htmlFor="name" style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>Nombre</label>
-                        <input
-                            id="name"
-                            type="text"
-                            value={name}
-                            onChange={handleNameChange}
-                            required
-                            style={{ width: "100%", textAlign: 'center', backgroundColor: 'white', color: 'black' }}
-                            placeholder="Ej. Juan Perez"
-                        />
-                        {nameError && <span style={{ color: "red", fontSize: "0.9em" }}>{nameError}</span>}
-                    </div>
-                    <div style={{ marginBottom: '20px', textAlign: 'center', width: '100%' }}>
-                        <label htmlFor="email" style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>Email</label>
-                        <input
-                            id="email"
-                            type="email"
-                            value={email}
-                            onChange={handleEmailChange}
-                            required
-                            style={{ width: "100%", textAlign: 'center', backgroundColor: 'white', color: 'black' }}
-                            placeholder="Ej. usuario@correo.com"
-                        />
-                        {emailError && <span style={{ color: "red", fontSize: "0.9em" }}>{emailError}</span>}
-                    </div>
-                    <button type="submit">Iniciar Sesión</button>
-                </form>
-                {feedbackMessage && <p style={{
-                    color: feedbackMessage.startsWith("Error") ? "red" : "green",
-                    border: "3px solid",
-                    borderColor: "#4a1050",
-                    backgroundColor: "white",
-                    fontSize: "1.2rem",
-                    fontWeight: "bold",
-                    marginBottom: "20px",
-                    marginTop: "20px",
-                    textAlign: "center"
-                }}>
-                    {feedbackMessage}
-                </p>}
-            </div>
-        </div>
+        <FormContainer onBack={goToClientSection} title="Iniciar Sesión">
+            <form onSubmit={loginUser} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+                <FormField
+                    label="Nombre"
+                    id="name"
+                    name="name"
+                    type="text"
+                    value={name}
+                    onChange={handleNameChange}
+                    placeholder="Ej. Juan Perez"
+                    error={nameError}
+                />
+                <FormField
+                    label="Email"
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={email}
+                    onChange={handleEmailChange}
+                    placeholder="Ej. usuario@correo.com"
+                    error={emailError}
+                />
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+            <FeedbackMessage message={feedbackMessage} />
+        </FormContainer>
     );
 };
 
