@@ -1,6 +1,5 @@
 package tingeso.backend.services;
 
-import tingeso.backend.entities.KartEntity;
 import tingeso.backend.repositories.KartRepository;
 import org.springframework.stereotype.Service;
 
@@ -13,11 +12,4 @@ public class KartService {
         this.kartRepository = kartRepository;
     }
 
-    public void changeKartStatus(KartEntity kart, int newState) {
-        if (newState < 0 || newState > 2) {
-            throw new IllegalArgumentException("Invalid state: " + newState);
-        }
-        kart.setState(newState);
-        kartRepository.save(kart);
-    }
 }

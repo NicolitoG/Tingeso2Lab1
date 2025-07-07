@@ -1,6 +1,5 @@
 package tingeso.backend.services;
 
-import tingeso.backend.entities.TariffEntity;
 import tingeso.backend.repositories.TariffRepository;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +12,4 @@ public class TariffService {
         this.tariffRepository = tariffRepository;
     }
 
-    public TariffEntity saveTariff(TariffEntity tariff) {
-        return tariffRepository.save(tariff);
-    }
 }

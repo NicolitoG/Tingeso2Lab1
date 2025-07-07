@@ -37,25 +37,4 @@ public class ClientService {
                 : ResponseEntity.badRequest().body("Invalid credentials");
     }
 
-    public String calculateCategory(ClientEntity client) {
-        int visits = client.getMonthlyVisits();
-
-        if (visits >= 7) {
-            return "veryFrequent";
-        } else if (visits >= 5) {
-            return "frequent";
-        } else if (visits >= 2) {
-            return "regular";
-        } else if (visits >= 0) {
-            return "notFrequent";
-        }
-
-        return "nonValid"; // for cases where visits are negative
-    }
-
-    public void incrementVisits(ClientEntity client) {
-        int visits = client.getMonthlyVisits();
-        client.setMonthlyVisits(visits + 1);
-        clientRepository.save(client);
-    }
 }

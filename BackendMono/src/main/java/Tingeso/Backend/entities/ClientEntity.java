@@ -28,31 +28,16 @@ public class ClientEntity {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date birthDate;
 
-    public int getMonthlyVisits() {
-        return monthlyVisits;
+    public String getName() {
+        return name;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public Long getClientId() {
         return clientId;
     }
 
-    public void setClientId(Long clientId) {
-        this.clientId = clientId;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setMonthlyVisits(int monthlyVisits) {
-        this.monthlyVisits = monthlyVisits;
-    }
 }
